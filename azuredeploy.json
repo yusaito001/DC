@@ -27,14 +27,7 @@
       "metadata": {
         "description": "The name of the Virtual Network to Create"
       },
-      "defaultValue": "adVNET"
-    },
-    "virtualNetworkAddressRange": {
-      "type": "string",
-      "metadata": {
-        "description": "The address range of the new VNET in CIDR format"
-      },
-      "defaultValue": "10.0.0.0/16"
+      "defaultValue": "Vnet"
     },
     "adSubnetName": {
       "type": "string",
@@ -47,8 +40,7 @@
       "type": "string",
       "metadata": {
         "description": "The address range of the subnet created in the new VNET"
-      },
-      "defaultValue": "10.0.0.0/24"
+      }
     },
     "adPDCNicName": {
       "type": "string",
@@ -61,8 +53,7 @@
       "type": "string",
       "metadata": {
         "description": "The IP address of the new AD PDC"
-      },
-      "defaultValue": "10.0.0.4"
+      }
     },
     "adBDCNicName": {
       "type": "string",
@@ -75,8 +66,7 @@
       "type": "string",
       "metadata": {
         "description": "The IP address of the new AD BDC"
-      },
-      "defaultValue": "10.0.0.5"
+      }
     },
     "publicIPAddressName": {
       "type": "string",
@@ -280,9 +270,6 @@
         "parameters": {
           "virtualNetworkName": {
             "value": "[parameters('virtualNetworkName')]"
-          },
-          "virtualNetworkAddressRange": {
-            "value": "[parameters('virtualNetworkAddressRange')]"
           },
           "subnetName": {
             "value": "[parameters('adSubnetName')]"
@@ -523,9 +510,6 @@
           "virtualNetworkName": {
             "value": "[parameters('virtualNetworkName')]"
           },
-          "virtualNetworkAddressRange": {
-            "value": "[parameters('virtualNetworkAddressRange')]"
-          },
           "subnetName": {
             "value": "[parameters('adSubnetName')]"
           },
@@ -697,9 +681,6 @@
         "parameters": {
           "virtualNetworkName": {
             "value": "[parameters('virtualNetworkName')]"
-          },
-          "virtualNetworkAddressRange": {
-            "value": "[parameters('virtualNetworkAddressRange')]"
           },
           "subnetName": {
             "value": "[parameters('adSubnetName')]"

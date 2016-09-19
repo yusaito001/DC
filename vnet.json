@@ -8,13 +8,6 @@
         "Description": "The name of the Virtual Network to Create"
       }
     },
-    "virtualNetworkAddressRange": {
-      "type": "string",
-      "metadata": {
-        "Description": "The address range of the new VNET in CIDR format"
-      },
-      "defaultValue": "10.0.0.0/16"
-    },
     "subnetName": {
       "type": "string",
       "metadata": {
@@ -25,8 +18,7 @@
       "type": "string",
       "metadata": {
         "Description": "The address range of the subnet created in the new VNET"
-      },
-      "defaultValue": "10.0.0.0/24"
+      }
     }
   },
   "resources": [
@@ -36,11 +28,6 @@
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-05-01-preview",
       "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[parameters('virtualNetworkAddressRange')]"
-          ]
-        },
         "subnets": [
           {
             "name": "[parameters('subnetName')]",
