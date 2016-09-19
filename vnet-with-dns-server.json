@@ -2,16 +2,10 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "EXISTINGVIRTUALNETWORKNAME": {
+    "existingVirtualNetworkName": {
       "type": "string",
       "metadata": {
         "Description": "The name of the Virtual Network to Create"
-      }
-    },
-    "virtualNetworkAddressRange": {
-      "type": "string",
-      "metadata": {
-        "Description": "The address range of the new VNET in CIDR format"
       }
     },
     "subnetName": {
@@ -35,16 +29,11 @@
   },
   "resources": [
     {
-      "name": "[parameters('EXISTINGVIRTUALNETWORKNAME')]",
+      "name": "[parameters('existingVirtualNetworkName')]",
       "type": "Microsoft.Network/virtualNetworks",
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-05-01-preview",
       "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[parameters('virtualNetworkAddressRange')]"
-          ]
-        },
         "dhcpOptions": {
           "dnsServers": "[parameters('DNSServerAddress')]"
         },
