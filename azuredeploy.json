@@ -198,7 +198,7 @@
       "metadata": {
         "description": "The location of resources such as templates and DSC modules that the script is dependent"
       },
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/active-directory-new-domain-ha-2-dc/"
+      "defaultValue": "https://github.com/yusaito001/DC"
     }
   },
   "variables": {
@@ -220,7 +220,7 @@
     "adBEAddressPoolID": "[concat(variables('adlbID'),'/backendAddressPools/',variables('adLBBE'))]",
     "adPDCDataDisk": "ADPDCDataDisk",
     "adBDCDataDisk": "ADBDCDataDisk",
-    "adDataDiskSize": 1000,
+    "adDataDiskSize": 500,
     "vnetTemplateUri": "[concat(parameters('assetLocation'),'vnet.json')]",
     "nicTemplateUri": "[concat(parameters('assetLocation'),'nic.json')]",
     "vnetwithDNSTemplateUri": "[concat(parameters('assetLocation'),'vnet-with-dns-server.json')]",
