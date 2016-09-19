@@ -29,6 +29,12 @@
       },
       "defaultValue": "Vnet"
     },
+    "virtualNetworkAddressRange": {
+      "type": "string",
+      "metadata": {
+        "description": "The address range of the new VNET in CIDR format"
+      }
+    },
     "adSubnetName": {
       "type": "string",
       "metadata": {
@@ -271,6 +277,9 @@
           "virtualNetworkName": {
             "value": "[parameters('virtualNetworkName')]"
           },
+          "virtualNetworkAddressRange": {
+            "value": "[parameters('virtualNetworkAddressRange')]"
+          },
           "subnetName": {
             "value": "[parameters('adSubnetName')]"
           },
@@ -510,6 +519,9 @@
           "virtualNetworkName": {
             "value": "[parameters('virtualNetworkName')]"
           },
+          "virtualNetworkAddressRange": {
+            "value": "[parameters('virtualNetworkAddressRange')]"
+          },
           "subnetName": {
             "value": "[parameters('adSubnetName')]"
           },
@@ -681,6 +693,9 @@
         "parameters": {
           "virtualNetworkName": {
             "value": "[parameters('virtualNetworkName')]"
+          },
+          "virtualNetworkAddressRange": {
+            "value": "[parameters('virtualNetworkAddressRange')]"
           },
           "subnetName": {
             "value": "[parameters('adSubnetName')]"
