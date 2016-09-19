@@ -22,7 +22,7 @@
       },
       "defaultValue": "Standard_LRS"
     },
-    "virtualNetworkName": {
+    "EXISTINGVIRTUALNETWORKNAME": {
       "type": "string",
       "metadata": {
         "description": "The name of the Virtual Network to Create"
@@ -212,7 +212,7 @@
     "adLBBE": "LBBE",
     "adPDCRDPNAT": "adPDCRDP",
     "adBDCRDPNAT": "adBDCRDP",
-    "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+    "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('EXISTINGVIRTUALNETWORKNAME'))]",
     "adSubnetRef": "[concat(variables('VnetID'),'/subnets/',parameters('adSubnetName'))]",
     "adPDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adPDCNicName'))]",
     "adPDCIPConfigID": "[concat(variables('adPDCNicId'),'/ipConfigurations/ipconfig1')]",
@@ -274,8 +274,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "virtualNetworkName": {
-            "value": "[parameters('virtualNetworkName')]"
+          "EXISTINGVIRTUALNETWORKNAME": {
+            "value": "[parameters('EXISTINGVIRTUALNETWORKNAME')]"
           },
           "virtualNetworkAddressRange": {
             "value": "[parameters('virtualNetworkAddressRange')]"
@@ -516,8 +516,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "virtualNetworkName": {
-            "value": "[parameters('virtualNetworkName')]"
+          "EXISTINGVIRTUALNETWORKNAME": {
+            "value": "[parameters('EXISTINGVIRTUALNETWORKNAME')]"
           },
           "virtualNetworkAddressRange": {
             "value": "[parameters('virtualNetworkAddressRange')]"
@@ -691,8 +691,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "virtualNetworkName": {
-            "value": "[parameters('virtualNetworkName')]"
+          "EXISTINGVIRTUALNETWORKNAME": {
+            "value": "[parameters('EXISTINGVIRTUALNETWORKNAME')]"
           },
           "virtualNetworkAddressRange": {
             "value": "[parameters('virtualNetworkAddressRange')]"

@@ -2,7 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "virtualNetworkName": {
+    "EXISTINGVIRTUALNETWORKNAME": {
       "type": "string",
       "metadata": {
         "Description": "The name of the Virtual Network to Create"
@@ -35,7 +35,7 @@
   },
   "resources": [
     {
-      "name": "[parameters('virtualNetworkName')]",
+      "name": "[parameters('EXISTINGVIRTUALNETWORKNAME')]",
       "type": "Microsoft.Network/virtualNetworks",
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-05-01-preview",
