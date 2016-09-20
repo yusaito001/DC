@@ -14,12 +14,6 @@
         "Description": "The name of the subnet created in the new VNET"
       }
     },
-    "subnetRange": {
-      "type": "string",
-      "metadata": {
-        "Description": "The address range of the subnet created in the new VNET"
-      }
-    },
     "DNSServerAddress": {
       "type": "array",
       "metadata": {
@@ -34,6 +28,10 @@
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-05-01-preview",
       "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+          ]
+        },
         "dhcpOptions": {
           "dnsServers": "[parameters('DNSServerAddress')]"
         },
@@ -41,7 +39,6 @@
           {
             "name": "[parameters('subnetName')]",
             "properties": {
-              "addressPrefix": "[parameters('subnetRange')]"
             }
           }
         ]
