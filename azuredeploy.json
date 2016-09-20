@@ -33,7 +33,8 @@
       "type": "string",
       "metadata": {
         "description": "Name of the subnet in the virtual network you want to use"
-      }
+      },
+      "defaultValue": "Subnet"
     },
     "adPDCNicName": {
       "type": "string",
