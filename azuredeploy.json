@@ -22,16 +22,10 @@
       },
       "defaultValue": "Standard_LRS"
     },
-    "existingVirtualNetworkResourceGroup": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the existing VNET resource group"
-      }
-    },
     "existingVirtualNetworkName": {
       "type": "string",
       "metadata": {
-        "description": "Name of the existing VNET"
+        "description": "The name of the Virtual Network to Create"
       },
       "defaultValue": "Vnet"
     },
@@ -205,8 +199,8 @@
     "adLBBE": "LBBE",
     "adPDCRDPNAT": "adPDCRDP",
     "adBDCRDPNAT": "adBDCRDP",
-    "VnetID":  "[resourceId(parameters('existingVirtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('existingVirtualNetworkName'))]",
-    "subnetRef": "[concat(variables('VnetID'),'/subnets/',parameters('subnetName'))]",
+    "vnetID": "[resourceId(parameters('existingVirtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('existingVirtualNetworkName'))]", 
+    "subnetRef": "[concat(variables('VnetID'),'/subnets/',parameters('SubnetName'))]",
     "adPDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adPDCNicName'))]",
     "adPDCIPConfigID": "[concat(variables('adPDCNicId'),'/ipConfigurations/ipconfig1')]",
     "adBDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adBDCNicName'))]",
@@ -226,6 +220,7 @@
     "adPDCConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
     "adBDCModulesURL": "[concat(parameters('assetLocation'),'CreateADBDC.ps1.zip')]",
     "adBDCConfigurationFunction": "CreateADBDC.ps1\\CreateADBDC"
+    "virtualNetworkName": "Vnet",
   },
   "resources": [
     {
@@ -323,7 +318,7 @@
               "privateIPAllocationMethod": "Static",
               "privateIPAddress": "[parameters('adPDCNicIPAddress')]",
               "subnet": {
-                "id": "[variables('subnetRef')]"
+                "id": "[variables('SubnetRef')]"
               },
               "loadBalancerBackendAddressPools": [
                 {
@@ -345,7 +340,7 @@
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Network/loadBalancers/',variables('adLBName'))]"
+         "[concat('Microsoft.Network/loadBalancers/',variables('adLBName'))]"
       ],
       "apiVersion": "2015-05-01-preview",
       "properties": {
@@ -356,7 +351,7 @@
               "privateIPAllocationMethod": "Static",
               "privateIPAddress": "[parameters('adBDCNicIPAddress')]",
               "subnet": {
-                "id": "[variables('subnetRef')]"
+                "id": "[variables('SubnetRef')]"
               },
               "loadBalancerBackendAddressPools": [
                 {
@@ -480,6 +475,12 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
+          "virtualNetworkName": {
+            "value": "[parameters('virtualNetworkName')]"
+          },
+          "subnetName": {
+            "value": "[parameters('SubnetName')]"
+          },
           "DNSServerAddress": {
             "value": [
               "[parameters('adPDCNicIPAddress')]"
@@ -513,7 +514,7 @@
                   "privateIPAllocationMethod": "Static",
                   "privateIPAddress": "[parameters('adBDCNicIPAddress')]",
                   "subnet": {
-                    "id": "[variables('subnetRef')]"
+                    "id": "[variables('SubnetRef')]"
                   },
                   "loadBalancerBackendAddressPools": [
                     {
@@ -643,8 +644,11 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
+          "virtualNetworkName": {
+            "value": "[parameters('virtualNetworkName')]"
+          },
           "subnetName": {
-            "value": "[parameters('subnetRef')]"
+            "value": "[parameters('SubnetName')]"
           },
           "DNSServerAddress": {
             "value": [
@@ -656,5 +660,4 @@
       }
     }
   ]
-}
-
+}f
