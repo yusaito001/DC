@@ -29,6 +29,12 @@
       },
       "defaultValue": "Vnet"
     },
+    "existingVirtualNetworkResourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the existing VNET resource group"
+      }
+    },
     "subnetName": {
       "type": "string",
       "metadata": {
