@@ -6,7 +6,8 @@
       "type": "string",
       "metadata": {
         "Description": "The name of the Virtual Network to Create"
-      }
+      },
+      "defaultValue": "Vnet"
     },
     "subnetName": {
       "type": "string",
