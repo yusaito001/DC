@@ -22,6 +22,12 @@
       },
       "defaultValue": "Standard_LRS"
     },
+    "existingVirtualNetworkResourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the existing VNET resource group"
+      }
+    },
     "existingVirtualNetworkName": {
       "type": "string",
       "metadata": {
@@ -199,7 +205,7 @@
     "adLBBE": "LBBE",
     "adPDCRDPNAT": "adPDCRDP",
     "adBDCRDPNAT": "adBDCRDP",
-    "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('existingVirtualNetworkName'))]",
+    "VnetID":  "[resourceId(parameters('existingVirtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('existingVirtualNetworkName'))]",
     "subnetRef": "[concat(variables('VnetID'),'/subnets/',parameters('subnetName'))]",
     "adPDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adPDCNicName'))]",
     "adPDCIPConfigID": "[concat(variables('adPDCNicId'),'/ipConfigurations/ipconfig1')]",
@@ -214,7 +220,6 @@
     "adPDCDataDisk": "ADPDCDataDisk",
     "adBDCDataDisk": "ADBDCDataDisk",
     "adDataDiskSize": 1000,
-    "vnetTemplateUri": "[concat(parameters('assetLocation'),'vnet.json')]",
     "nicTemplateUri": "[concat(parameters('assetLocation'),'nic.json')]",
     "vnetwithDNSTemplateUri": "[concat(parameters('assetLocation'),'vnet-with-dns-server.json')]",
     "adPDCModulesURL": "[concat(parameters('assetLocation'),'CreateADPDC.ps1.zip')]",
@@ -249,26 +254,6 @@
       "name": "[parameters('adAvailabilitySetName')]",
       "apiVersion": "2015-05-01-preview",
       "location": "[resourceGroup().location]"
-    },
-    {
-      "name": "VNet",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2015-01-01",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[variables('vnetTemplateUri')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "virtualNetworkName": {
-            "value": "[parameters('existingVirtualNetworkName')]"
-          },
-          "subnetName": {
-            "value": "[parameters('subnetName')]"
-          },
-        }
-      }
     },
     {
       "apiVersion": "2015-05-01-preview",
@@ -327,7 +312,6 @@
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "Microsoft.Resources/deployments/VNet",
         "[concat('Microsoft.Network/loadBalancers/',variables('adLBName'))]"
       ],
       "apiVersion": "2015-05-01-preview",
@@ -361,7 +345,6 @@
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "Microsoft.Resources/deployments/VNet",
         "[concat('Microsoft.Network/loadBalancers/',variables('adLBName'))]"
       ],
       "apiVersion": "2015-05-01-preview",
@@ -497,9 +480,6 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "virtualNetworkName": {
-            "value": "[parameters('existingVirtualNetworkName')]"
-          },
           "DNSServerAddress": {
             "value": [
               "[parameters('adPDCNicIPAddress')]"
@@ -663,9 +643,6 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "virtualNetworkName": {
-            "value": "[parameters('existingVirtualNetworkName')]"
-          },
           "subnetName": {
             "value": "[parameters('subnetRef')]"
           },
