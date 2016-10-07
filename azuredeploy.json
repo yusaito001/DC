@@ -175,9 +175,9 @@
     "subnetRef": "[concat(variables('VnetID'),'/subnets/',parameters('SubnetName'))]",
     "adPDCNicName": "[concat(parameters('adPDCVMName'), 'NIC')]",
     "adBDCNicName": "[concat(parameters('adBDCVMName'), 'NIC')]",
-    "adPDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adPDCNicName'))]",
+    "adPDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',variables('adPDCNicName'))]",
     "adPDCIPConfigID": "[concat(variables('adPDCNicId'),'/ipConfigurations/ipconfig1')]",
-    "adBDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adBDCNicName'))]",
+    "adBDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',variables('adBDCNicName'))]",
     "adBDCIPConfigID": "[concat(variables('adBDCNicId'),'/ipConfigurations/ipconfig1')]",
     "adLBName": "adLoadBalancer",
     "adlbID": "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]",
@@ -321,7 +321,7 @@
       }
     },
     {
-      "name": "[parameters('adBDCNicName')]",
+      "name": "[variables('adBDCNicName')]",
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[resourceGroup().location]",
       "dependsOn": [
@@ -489,7 +489,7 @@
         },
         "parameters": {
           "nicName": {
-            "value": "[parameters('adBDCNicName')]"
+            "value": "[variables('adBDCNicName')]"
           },
           "ipConfigurations": {
             "value": [
@@ -530,7 +530,7 @@
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Storage/storageAccounts',variables('uniqueStringArray')[1])]",
-        "[resourceId('Microsoft.Network/networkInterfaces',parameters('adBDCNicName'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces',variables('adBDCNicName'))]",
         "[resourceId('Microsoft.Compute/availabilitySets', parameters('adAvailabilitySetName'))]",
         "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]"
       ],
@@ -577,7 +577,7 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adBDCNicName'))]"
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('adBDCNicName'))]"
             }
           ]
         }
