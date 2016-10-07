@@ -21,7 +21,11 @@
       "metadata": {
         "Description": "The DNS address(es) of the DNS Server(s) used by the VNET"
       }
-      "defaultValue": "10.0.10.11","10.0.10.12"
+      "defaultValue": 
+        [
+        "10.0.10.11",
+        "10.0.10.12"
+      ]
     }
   },
   "resources": [
