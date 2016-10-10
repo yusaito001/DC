@@ -448,7 +448,7 @@
     },
     {
       "name": "UpdateVNetDNS1",
-      "type": "Microsoft.Resources/deployments",
+      "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2015-01-01",
       "dependsOn": [
         "[concat('Microsoft.Compute/virtualMachines/', parameters('adPDCVMName'),'/extensions/CreateADForest')]"
