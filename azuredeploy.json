@@ -448,9 +448,8 @@
     },
     {
       "name": "UpdateVNetDNS1",
-      "type": "Microsoft.Network/virtualNetworks",
+      "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
-      "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Compute/virtualMachines/', parameters('adPDCVMName'),'/extensions/CreateADForest')]"
       ],
@@ -480,7 +479,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
-        "Microsoft.Network/virtualNetworks/UpdateVNetDNS1"
+        "Microsoft.Resources/deployments/UpdateVNetDNS1"
       ],
       "properties": {
         "mode": "Incremental",
@@ -618,9 +617,8 @@
     },
     {
       "name": "UpdateVNetDNS2",
-      "type": "Microsoft.Network/virtualNetworks",
+      "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
-      "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Compute/virtualMachines/',parameters('adBDCVMName'),'/extensions/CreateBDC')]"
       ],
