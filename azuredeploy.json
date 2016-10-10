@@ -450,6 +450,7 @@
       "name": "UpdateVNetDNS1",
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2015-01-01",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Compute/virtualMachines/', parameters('adPDCVMName'),'/extensions/CreateADForest')]"
       ],
@@ -619,6 +620,7 @@
       "name": "UpdateVNetDNS2",
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2015-01-01",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Compute/virtualMachines/',parameters('adBDCVMName'),'/extensions/CreateBDC')]"
       ],
